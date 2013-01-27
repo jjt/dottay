@@ -1,0 +1,9 @@
+syntax: glob
+*.swp
+.svn
+*.pyc
+.sass-cache
+*.swp
+*.swo
+*.swn
+.git

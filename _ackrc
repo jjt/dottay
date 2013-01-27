@@ -1,0 +1,5 @@
+--type-set=hamlpy=.hamlpy
+--type-set=coffeescript=.coffee
+--type-set=scss=.scss
+--type-set=conf=.local
+--smart-case
