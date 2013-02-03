@@ -1,0 +1,73 @@
+{
+	"name": "Default color scheme for shell prompts",
+	"colors": {
+		"black": 16,
+		"white": 231,
+
+		"darkestgreen": 22,
+		"darkgreen": 28,
+		"mediumgreen": 70,
+		"brightgreen": 148,
+
+		"darkestcyan": 23,
+		"darkcyan": 74,
+		"mediumcyan": 117,
+		"brightcyan": 159,
+
+		"darkestblue": 24,
+		"darkblue": 31,
+        "lightblue": 123,
+
+		"darkestred": 52,
+		"darkred": 88,
+		"mediumred": 124,
+		"brightred": 160,
+		"brightestred": 196,
+        "pink": 216,
+
+		"darkestpurple": 55,
+		"mediumpurple": 98,
+		"brightpurple": 189,
+
+		"darkorange": 94,
+		"mediumorange": 166,
+		"brightorange": 208,
+		"brightestorange": 214,
+
+		"brightyellow": 220,
+
+		"gray0": 233,
+		"gray1": 235,
+		"gray2": 236,
+		"gray3": 239,
+		"gray4": 240,
+		"gray5": 241,
+		"gray6": 244,
+		"gray7": 245,
+		"gray8": 247,
+		"gray9": 250,
+		"gray10": 252,
+
+		"gradient1": 190,
+		"gradient2": 184,
+		"gradient3": 178,
+		"gradient4": 172,
+		"gradient5": 166,
+		"gradient6": 160,
+
+        "gl": 192,
+        "gd": 64
+	},
+	"groups": {
+		"user": { "fg":"gray8", "bg": "gray2", "attr": ["bold"] },
+        "jobs": { "fg": "gl", "bg": "gd"},
+		"superuser": { "fg": "white", "bg": "brightred", "attr": ["bold"] },
+		"virtualenv": { "fg": "white", "bg": "darkcyan" },
+		"branch": { "fg": "gl", "bg": "gd" },
+		"cwd": { "fg": "lightblue", "bg": "darkestblue" },
+		"cwd:current_folder": { "fg": "white", "bg": "darkestblue", "attr": ["bold"] },
+		"cwd:divider": { "fg": "darkblue", "bg": "darkestblue" },
+		"hostname": { "fg": "brightyellow", "bg": "mediumorange" },
+        "date": { "fg": "gray8", "bg": "gray2"}
+	}
+}

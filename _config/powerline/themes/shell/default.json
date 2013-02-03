@@ -1,0 +1,36 @@
+{
+	"default_module": "powerline.segments.common",
+	"segments": {
+		"left": [
+            {
+                "name": "jobs"
+            },
+			{
+				"name": "user"
+			},
+			{
+				"name": "virtualenv",
+				"before": "ⓔ  "
+			},
+			{
+				"name": "cwd",
+				"args": {
+					"dir_limit_depth": 3
+				},
+				"divider_highlight_group": "cwd:divider"
+			}
+		],
+		"right": [
+			{
+				"name": "branch",
+				"before": " "
+			},
+            {
+                "name": "date",
+                "args": {
+                    "format": "%H:%M:%S, %b %d %Y"
+                }
+            }
+		]
+	}
+}

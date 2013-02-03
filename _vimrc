@@ -1,28 +1,16 @@
 set nocompatible              " Don't be compatible with vi
 let mapleader=","             " change the leader to be a comma vs slash
-
 " Seriously, guys. It's not like :W is bound to anything anyway.
+
+python from powerline.bindings.vim import source_plugin; source_plugin()
+
 command! W :w
 
-" Toggle the tasklist
-map <leader>td <Plug>TaskList
-
-" Run pep8
 let g:pep8_map='<leader>8'
-
-" run py.test's
-nmap <silent><Leader>tf <Esc>:Pytest file<CR>
-nmap <silent><Leader>tc <Esc>:Pytest class<CR>
-nmap <silent><Leader>tm <Esc>:Pytest method<CR>
-nmap <silent><Leader>tn <Esc>:Pytest next<CR>
-nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
-nmap <silent><Leader>te <Esc>:Pytest error<CR>
-
-" Run django tests
-map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
 
 " ,v brings up my .vimrc in a new tab, and automatically reloads it when saved
 map <leader>v :tabe ~/.vimrc<CR>
+map <leader>V :source $MYVIMRC<CR>
 autocmd bufwritepost .vimrc source $MYVIMRC
 
 " open/close the quickfix window
@@ -316,4 +304,3 @@ au BufRead *.js set makeprg=jslint\ %
 "endif
 "
 
-python from powerline.bindings.vim import source_plugin; source_plugin()
