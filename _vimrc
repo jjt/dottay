@@ -21,10 +21,9 @@ nmap <silent><Leader>te <Esc>:Pytest error<CR>
 " Run django tests
 map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
 
-" ,v brings up my .vimrc
-" ,V reloads it -- making all changes active (have to save first)
-map <leader>v :sp ~/.vimrc<CR><C-W>_
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+" ,v brings up my .vimrc in a new tab, and automatically reloads it when saved
+map <leader>v :tabe ~/.vimrc<CR>
+autocmd bufwritepost .vimrc source $MYVIMRC
 
 " open/close the quickfix window
 nmap <leader>c :copen<CR>
@@ -100,7 +99,7 @@ set cursorline              " have a line indicate the cursor location
 set ruler                   " show the cursor position all the time
 set nostartofline           " Avoid moving cursor to BOL when jumping around
 set virtualedit=block       " Let cursor move past the last char in <C-v> mode
-set scrolloff=3             " Keep 3 context lines above and below the cursor
+set scrolloff=13             " Keep 3 context lines above and below the cursor
 set backspace=2             " Allow backspacing over autoindent, EOL, and BOL
 set showmatch               " Briefly jump to a paren once it's balanced
 set matchtime=2             " (for only .2 seconds).
