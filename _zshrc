@@ -16,14 +16,10 @@ eval "$(rbenv init -)"
 export PATH=$PATH:$HOME/.local/bin
 . $HOME/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
-# powerline-shell
-#source $HOME/misc/powerline-shell/zsh.sh
-
 export SVN_EDITOR=vim
 export EDITOR=vim
 
 alias so="source"
-alias tmux="tmux -2"
 alias pbv="pythonbrew venv use"
 alias py="python"
 alias ack="ack-grep"
@@ -32,3 +28,7 @@ alias ack="ack-grep"
 export PATH="$HOME/bin:$PATH"
 
 [[ -s /home/jason/.nvm/nvm.sh ]] && . /home/jason/.nvm/nvm.sh # This loads NVM
+
+# Color listing
+eval $(dircolors ~/.dir_colors)
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

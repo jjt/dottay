@@ -3,3 +3,7 @@
 *~
 _vim/ropevim/src*
 _vim/ropevim/pylibs*
+_vim/backup/*
+_vim/swap/*
+_vim/undo/*
+_vim/bundle/*

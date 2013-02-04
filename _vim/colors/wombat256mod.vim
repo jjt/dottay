@@ -7,17 +7,16 @@
 " based on version by
 "   Danila Bespalov (danila.bespalov@gmail.com)
 
-set background=dark
+"set background=dark
 
-if version > 580
-	hi clear
-	if exists("syntax_on")
-		syntax reset
-	endif
-endif
+"if version > 580
+	"hi clear
+	"if exists("syntax_on")
+		"syntax reset
+	"endif
+"endif
 
 let colors_name = "wombat256mod"
-
 
 " General colors
 hi Normal		ctermfg=252		ctermbg=234		cterm=none		guifg=#e3e0d7	guibg=#242424	gui=none
