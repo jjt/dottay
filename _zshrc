@@ -7,6 +7,7 @@ source $ZSH/oh-my-zsh.sh
 # Python 
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 pythonbrew use 2.7.3
+export VIRTUAL_ENV_DISABLE_PROMPT="NO PROMPT"
 
 # Ruby/rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -24,11 +25,17 @@ alias pbv="pythonbrew venv use"
 alias py="python"
 alias ack="ack-grep"
 
-
 export PATH="$HOME/bin:$PATH"
+
+#export TERM=screen-256color
 
 [[ -s /home/jason/.nvm/nvm.sh ]] && . /home/jason/.nvm/nvm.sh # This loads NVM
 
 # Color listing
 eval $(dircolors ~/.dir_colors)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+function chpwd() {
+    emulate -L zsh
+    ls -a
+}

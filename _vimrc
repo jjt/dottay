@@ -1,19 +1,27 @@
 set nocompatible
 
 " Vundle
+filetype off 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
 Bundle 'gmarik/vundle'
+
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
+let g:ctrlp_working_path_mode = 0
 Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'mileszs/ack.vim'
+Bundle 'spolu/dwm.vim'
+Bundle 'jiangmiao/auto-pairs'
 
-"let &t_Co=256
-syntax on
-set background=dark
-colorscheme wombat256mod
+"vim-snipmate deps
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle 'honza/snipmate-snippets'
+Bundle 'garbas/vim-snipmate'
+
 
 " Powerline
 python from powerline.bindings.vim import source_plugin; source_plugin()
@@ -21,17 +29,23 @@ python from powerline.bindings.vim import source_plugin; source_plugin()
 " Basic Settings 
 filetype on                   " try to detect filetypes
 filetype plugin indent on     " enable loading indent file for filetype
+set t_Co=256
+syntax on
+set background=dark
+colorscheme wombat256mod
 set numberwidth=1             " using only 1 column (and 1 space) while possible
 set relativenumber
 set wildmenu                  " Menu completion in command mode on <Tab>
 set wildmode=full             " <Tab> cycles between all matching choices.
+set noautochdir
+set sessionoptions=buffers,tabpages
 
 " Moving Around/Editing
 set cursorline              " have a line indicate the cursor location
 set ruler                   " show the cursor position all the time
 set nostartofline           " Avoid moving cursor to BOL when jumping around
 set virtualedit=block       " Let cursor move past the last char in <C-v> mode
-set scrolloff=13             " Keep 3 context lines above and below the cursor
+set scrolloff=8             " Keep 8 context lines above and below the cursor
 set backspace=2             " Allow backspacing over autoindent, EOL, and BOL
 set showmatch               " Briefly jump to a paren once it's balanced
 set matchtime=2             " (for only .2 seconds).
@@ -82,33 +96,19 @@ set smartcase               " unless uppercase letters are used in the regex.
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
-set noautochdir
-set sessionoptions=buffers,tabpages
 
 let mapleader=","
 
-" ,v brings up my .vimrc in a new tab, and automatically reloads it when saved
+map ; :
+noremap ;; ;
+inoremap jk <ESC>
+nnoremap <F5> :buffers<CR>:buffer<Space>
 map <leader>v :tabe ~/.vimrc<CR>
 map <leader>V :source $MYVIMRC<CR>
 autocmd bufwritepost .vimrc source $MYVIMRC
-
-cmap w!! w !sudo tee % >/dev/null
-
-" ctrl-jklm  changes to that split
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-
-map <leader>n :NERDTreeToggle<CR>
+map <leader>wst :w !sudo tee %
+map <leader>n :NERDTreeTabsToggle<CR>
 nmap <leader>a <Esc>:Ack!
-map ,# :s/^/#/<CR> :noh <CR>
-map ,/ :s/^/\/\//<CR>:noh <CR>
-map ,> :s/^/> /<CR>:noh <CR>
-map ," :s/^/\"/<CR>:noh <CR>
-map ,% :s/^/%/<CR>:noh <CR>
-map ,! :s/^/!/<CR>:noh <CR>
-map ,; :s/^/;/<CR>:noh <CR>
-map ,- :s/^/--/<CR>:noh <CR>
-
 map <leader>rs <ESC>:call ReloadAllSnippets() <CR>
 nmap <leader>ss :wa<CR>:mksession! ~/.vim/sessions/
 nmap <leader>so :wa<CR>:so ~/.vim/sessions/
@@ -122,23 +122,35 @@ map <leader>t :tabn<Space>
 map <leader>b :buffer<Space>
 nnoremap <Leader>s :%s/<C-r><C-w>//gic<Left><Left><Left><Left>
 nnoremap <Leader>sts :call SetTabStops()<Left>
+nmap <leader>cd :lcd %:p:h<cr>
 
-map ; :
-noremap ;; ;
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-"map <C-L> <C-W>l<C-W>_
-"map <C-H> <C-W>h<C-W>_
-nnoremap <F5> :buffers<CR>:buffer<Space>
+" DWM plugin
+nmap <leader>wf <Plug>DWMFocus 
+nmap <leader>wl <Plug>DWMGrowMaster
+nmap <leader>wh <Plug>DWMShrinkMaster
+nmap <c-,> <Plug>DWMRotateCounterclockwise
+" Putty ctrl+arrow codes map to splits
+"map <silent> <esc>OD <c-w>h
+"map <silent> <esc>OB <c-w>j
+"map <silent> <esc>OA <c-w>k
+"map <silent> <esc>OC <c-w>l
 
-inoremap jk <ESC>
+" Comments at beginning of line
+map ,# :s/^/#/<CR> :noh <CR>
+map ,/ :s/^/\/\//<CR>:noh <CR>
+map ,> :s/^/> /<CR>:noh <CR>
+map ," :s/^/\"/<CR>:noh <CR>
+map ,% :s/^/%/<CR>:noh <CR>
+map ,! :s/^/!/<CR>:noh <CR>
+map ,; :s/^/;/<CR>:noh <CR>
+map ,- :s/^/--/<CR>:noh <CR>
 
 
 " close preview window automatically when we move around
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
-" Filetypes
+" Filetype settings
 au BufRead,BufNewFIle *.scss setlocal filetype=scss
 au BufRead,BufNewFile *.php setlocal filetype=php.html
 au BufRead,BufNewFile *.coffee setlocal filetype=coffee sw=2 ts=2 sts=2
@@ -146,7 +158,8 @@ au BufRead,BufNewFile *.js setlocal sw=2 ts=2 sts=2
 au BufRead,BufNewFile *.hamlpy setlocal filetype=haml sw=4 ts=4 sts=4
 au BufRead,BufNewFile *.py setlocal filetype=pydjango.python
 
-autocmd BufEnter * lcd %:p:h
+"autocmd BufEnter * lcd %:p:h
+
 
 function! SetTabStops(num)
     let &l:ts = a:num
