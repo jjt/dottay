@@ -2,12 +2,6 @@
 	"default_module": "powerline.segments.common",
 	"segments": {
 		"left": [
-            {
-                "name": "jobs"
-            },
-			{
-				"name": "user"
-			},
 			{
 				"name": "virtualenv",
 				"before": "ⓔ  "
@@ -30,7 +24,10 @@
                 "args": {
                     "format": "%H:%M:%S, %b %d %Y"
                 }
-            }
+            },
+			{
+				"name": "user"
+			}
 		]
 	}
 }
