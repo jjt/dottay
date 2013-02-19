@@ -3,8 +3,18 @@
 	"segments": {
 		"left": [
 			{
+				"name": "hostname",
+				"before": " ",
+				"args": {
+					"only_if_ssh": true
+				}
+			},
+			{
+				"name": "user"
+			},
+			{
 				"name": "virtualenv",
-				"before": "■ "
+				"before": "ⓔ  "
 			},
 			{
 				"name": "cwd",
@@ -16,17 +26,13 @@
 		],
 		"right": [
 			{
+				"module": "powerline.segments.shell",
+				"name": "last_pipe_status",
+				"highlight_group": "exit_fail"
+			},
+			{
 				"name": "branch",
 				"before": " "
-			},
-            {
-                "name": "date",
-                "args": {
-                    "format": "%H:%M:%S, %b %d %Y"
-                }
-            },
-			{
-				"name": "user"
 			}
 		]
 	}

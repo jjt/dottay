@@ -24,7 +24,7 @@ Bundle 'garbas/vim-snipmate'
 
 
 " Powerline
-python from powerline.bindings.vim import source_plugin; source_plugin()
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 " Basic Settings 
 filetype on                   " try to detect filetypes
@@ -84,7 +84,7 @@ set showcmd                 " Show incomplete normal mode commands as I type.
 set report=0                " : commands always print changed line count.
 set shortmess+=a            " Use [+]/[RO]/[w] for modified/readonly/written.
 set ruler                   " Show some info, even without statuslines.
-set laststatus=2            " Always show statusline, even if only 1 window.
+"set laststatus=2            " Always show statusline, even if only 1 window.
 
 " displays tabs with :set list & displays when a line runs off-screen
 set listchars=tab:>-,eol:$,trail:-,precedes:<,extends:>
