@@ -4,7 +4,7 @@
 		"left": [
 			{
 				"name": "virtualenv",
-				"before": "ⓔ  "
+				"before": "■ "
 			},
 			{
 				"name": "cwd",

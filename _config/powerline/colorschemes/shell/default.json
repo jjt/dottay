@@ -17,6 +17,7 @@
 		"darkestblue": 24,
 		"darkblue": 31,
         "lightblue": 123,
+        "pyblue": 25,
 
 		"darkestred": 52,
 		"darkred": 88,
@@ -62,7 +63,7 @@
 		"user": { "fg":"gray8", "bg": "gray1", "attr": ["bold"] },
         "jobs": { "fg": "gl", "bg": "gd"},
 		"superuser": { "fg": "white", "bg": "brightred", "attr": ["bold"] },
-		"virtualenv": { "fg": "white", "bg": "darkcyan" },
+		"virtualenv": { "fg": "pyblue", "bg": "brightyellow" },
 		"branch": { "fg": "gl", "bg": "gd" },
 		"cwd": { "fg": "lightblue", "bg": "darkestblue" },
 		"cwd:current_folder": { "fg": "white", "bg": "darkestblue", "attr": ["bold"] },

@@ -123,6 +123,7 @@ map <leader>b :buffer<Space>
 nnoremap <Leader>s :%s/<C-r><C-w>//gic<Left><Left><Left><Left>
 nnoremap <Leader>sts :call SetTabStops()<Left>
 nmap <leader>cd :lcd %:p:h<cr>
+nmap <leader>sar :!sudo /usr/sbin/service apache2 restart<cr>
 
 " DWM plugin
 nmap <leader>wf <Plug>DWMFocus 
