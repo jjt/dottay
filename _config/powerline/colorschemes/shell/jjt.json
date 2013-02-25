@@ -68,7 +68,7 @@
 		"cwd": { "fg": "lightblue", "bg": "darkestblue" },
 		"cwd:current_folder": { "fg": "white", "bg": "darkestblue", "attr": ["bold"] },
 		"cwd:divider": { "fg": "darkblue", "bg": "darkestblue" },
-		"hostname": { "fg": "brightyellow", "bg": "mediumorange" },
+		"hostname": { "fg": "gray8", "bg": "gray1" },
         "date": { "fg": "gray8", "bg": "gray2"}
 	}
 }

@@ -27,7 +27,14 @@
             },
 			{
 				"name": "user"
-			}
+			},
+            {
+                "name": "hostname",
+                "before": "@",
+                "draw_divider": false
+                
+            }
+
 		]
 	}
 }
