@@ -23,8 +23,8 @@
 			"theme": "jjt"
 		},
 		"tmux": {
-			"colorscheme": "default",
-			"theme": "default"
+			"colorscheme": "jjt",
+			"theme": "jjt"
 		},
 		"vim": {
 			"colorscheme": "default",
