@@ -101,21 +101,20 @@ let mapleader=","
 
 map ; :
 noremap ;; ;
-inoremap jk <ESC>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 map <leader>v :tabe ~/.vimrc<CR>
 map <leader>V :source $MYVIMRC<CR>
-autocmd bufwritepost .vimrc source $MYVIMRC
 map <leader>wst :w !sudo tee %
 map <leader>n :NERDTreeTabsToggle<CR>
 nmap <leader>a <Esc>:Ack!
 map <leader>rs <ESC>:call ReloadAllSnippets() <CR>
 nmap <leader>ss :wa<CR>:mksession! ~/.vim/sessions/
 nmap <leader>so :wa<CR>:so ~/.vim/sessions/
-map <C-l> :tabn <CR>
-map <C-h> :tabp <CR>
-map <C-L> :tabn <CR>
-map <C-H> :tabp <CR>
+nmap <silent> <leader>tp :set paste!<cr>
+map <C-l>:tabn <CR>
+map <C-h>:tabp <CR>
+map <C-L>:tabn <CR>
+map <C-H>:tabp <CR>
 map <leader>dcl :%s/^.*console\.log.*\n//gc <CR>
 map <leader>ccl :%s/\(^.*\)\(console\.log.*\n\)/\1\/\/\2/gc <CR>
 map <leader>t :tabn<Space> 
@@ -130,36 +129,55 @@ nmap <leader>wf <Plug>DWMFocus
 nmap <leader>wl <Plug>DWMGrowMaster
 nmap <leader>wh <Plug>DWMShrinkMaster
 nmap <c-,> <Plug>DWMRotateCounterclockwise
-" Putty ctrl+arrow codes map to splits
-"map <silent> <esc>OD <c-w>h
-"map <silent> <esc>OB <c-w>j
-"map <silent> <esc>OA <c-w>k
-"map <silent> <esc>OC <c-w>l
 
-" Comments at beginning of line
-map ,# :s/^/#/<CR> :noh <CR>
-map ,/ :s/^/\/\//<CR>:noh <CR>
-map ,> :s/^/> /<CR>:noh <CR>
-map ," :s/^/\"/<CR>:noh <CR>
-map ,% :s/^/%/<CR>:noh <CR>
-map ,! :s/^/!/<CR>:noh <CR>
-map ,; :s/^/;/<CR>:noh <CR>
-map ,- :s/^/--/<CR>:noh <CR>
+" Comments at beginning of line respecting indentation
+map ,# :s/^\(\s*\)/\1#/<cr>:noh <cr>
+map ,/ :s/^\(\s*\)/\1\/\//<CR>:noh <CR>
+map ,> :s/^\(\s*\)/\1> /<CR>:noh <CR>
+map ," :s/^\(\s*\)/\1\"/<CR>:noh <CR>
+map ,% :s/^\(\s*\)/\1%/<CR>:noh <CR>
+map ,! :s/^\(\s*\)/\1!/<CR>:noh <CR>
+map ,; :s/^\(\s*\)/\1;/<CR>:noh <CR>
+map ,- :s/^\(\s*\)/\1--/<CR>:noh <CR>
+
+map <leader>dhb <ESC>:call DeleteHiddenBuffers() <CR>
+
+" Moving back and forth between lines of same or lower indentation.
+nnoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
+nnoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
+nnoremap <silent> [k :call NextIndent(0, 0, 1, 1)<CR>
+nnoremap <silent> ]k :call NextIndent(0, 1, 1, 1)<CR>
+vnoremap <silent> [l <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
+vnoremap <silent> ]l <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
+vnoremap <silent> [k <Esc>:call NextIndent(0, 0, 1, 1)<CR>m'gv''
+vnoremap <silent> ]k <Esc>:call NextIndent(0, 1, 1, 1)<CR>m'gv''
+onoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
+onoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
+onoremap <silent> [k :call NextIndent(1, 0, 1, 1)<CR>
+onoremap <silent> ]k :call NextIndent(1, 1, 1, 1)<CR>
+
+augroup startup
+    " Prevent duplicated autocmds 
+    " http://learnvimscriptthehardway.stevelosh.com/chapters/14.html
+    au!
+
+    au bufwritepost .vimrc source $MYVIMRC
+    " close preview window automatically when we move around
+    au CursorMovedI * if pumvisible() == 0|pclose|endif
+    au InsertLeave * if pumvisible() == 0|pclose|endif
+
+    " Filetype settings
+    au BufRead,BufNewFIle *.scss setlocal filetype=scss
+    au BufRead,BufNewFile *.php setlocal filetype=php.html
+    au BufRead,BufNewFile *.coffee setlocal filetype=coffee sw=2 ts=2 sts=2
+    au BufRead,BufNewFile *.js setlocal sw=2 ts=2 sts=2
+    au BufRead,BufNewFile *.hamlpy setlocal filetype=haml sw=4 ts=4 sts=4
+    au BufRead,BufNewFile *.py setlocal filetype=pydjango.python
+
+    "autocmd BufEnter * lcd %:p:h
+augroup END
 
 
-" close preview window automatically when we move around
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" Filetype settings
-au BufRead,BufNewFIle *.scss setlocal filetype=scss
-au BufRead,BufNewFile *.php setlocal filetype=php.html
-au BufRead,BufNewFile *.coffee setlocal filetype=coffee sw=2 ts=2 sts=2
-au BufRead,BufNewFile *.js setlocal sw=2 ts=2 sts=2
-au BufRead,BufNewFile *.hamlpy setlocal filetype=haml sw=4 ts=4 sts=4
-au BufRead,BufNewFile *.py setlocal filetype=pydjango.python
-
-"autocmd BufEnter * lcd %:p:h
 
 
 function! SetTabStops(num)
@@ -176,7 +194,6 @@ function! DeleteHiddenBuffers()
     endfor
 endfunction
 
-map <leader>dhb <ESC>:call DeleteHiddenBuffers() <CR>
 
 " Jump to the next or previous line that has the same level or a lower
 " level of indentation than the current line.
@@ -211,16 +228,3 @@ function! NextIndent(exclusive, fwd, lowerlevel, skipblanks)
   endwhile
 endfunction
 
-" Moving back and forth between lines of same or lower indentation.
-nnoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
-nnoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
-nnoremap <silent> [k :call NextIndent(0, 0, 1, 1)<CR>
-nnoremap <silent> ]k :call NextIndent(0, 1, 1, 1)<CR>
-vnoremap <silent> [l <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
-vnoremap <silent> ]l <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
-vnoremap <silent> [k <Esc>:call NextIndent(0, 0, 1, 1)<CR>m'gv''
-vnoremap <silent> ]k <Esc>:call NextIndent(0, 1, 1, 1)<CR>m'gv''
-onoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
-onoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
-onoremap <silent> [k :call NextIndent(1, 0, 1, 1)<CR>
-onoremap <silent> ]k :call NextIndent(1, 1, 1, 1)<CR>
