@@ -111,10 +111,10 @@ map <leader>rs <ESC>:call ReloadAllSnippets() <CR>
 nmap <leader>ss :wa<CR>:mksession! ~/.vim/sessions/
 nmap <leader>so :wa<CR>:so ~/.vim/sessions/
 nmap <silent> <leader>tp :set paste!<cr>
-map <C-l>:tabn <CR>
-map <C-h>:tabp <CR>
-map <C-L>:tabn <CR>
-map <C-H>:tabp <CR>
+map <C-l> :tabn <CR>
+map <C-h> :tabp <CR>
+map <C-L> :tabn <CR>
+map <C-H> :tabp <CR>
 map <leader>dcl :%s/^.*console\.log.*\n//gc <CR>
 map <leader>ccl :%s/\(^.*\)\(console\.log.*\n\)/\1\/\/\2/gc <CR>
 map <leader>t :tabn<Space> 
