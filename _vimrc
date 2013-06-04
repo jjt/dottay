@@ -14,7 +14,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'mileszs/ack.vim'
 Bundle 'spolu/dwm.vim'
-Bundle 'jiangmiao/auto-pairs'
+"Bundle 'jiangmiao/auto-pairs'
+Bundle 'nono/vim-handlebars'
+Bundle 'groenewege/vim-less'
 
 "vim-snipmate deps
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -61,6 +63,8 @@ set matchpairs+=<:>         " show matching <> (html mainly) as well
 set foldmethod=manual       " allow us to fold on indents
 set foldlevel=99            " don't fold by default
 set foldlevelstart=99            " don't fold by default
+set splitright
+set splitbelow
 
 " Undo/swap
 set undodir=./.vim/undo//,$HOME/.vim/undo//,/var/tmp/vim/undo//
@@ -99,6 +103,8 @@ set incsearch               " Incrementally search while typing a /regex
 
 let mapleader=","
 
+cabbr %% <C-R>=expand('%:p:h')<CR>
+
 map ; :
 noremap ;; ;
 nnoremap <F5> :buffers<CR>:buffer<Space>
@@ -111,18 +117,18 @@ map <leader>rs <ESC>:call ReloadAllSnippets() <CR>
 nmap <leader>ss :wa<CR>:mksession! ~/.vim/sessions/
 nmap <leader>so :wa<CR>:so ~/.vim/sessions/
 nmap <silent> <leader>tp :set paste!<cr>
-map <C-l> :tabn <CR>
-map <C-h> :tabp <CR>
-map <C-L> :tabn <CR>
-map <C-H> :tabp <CR>
+nnoremap <C-l> :tabn <CR>
+nnoremap <C-h> :tabp <CR>
+nnoremap <C-L> :tabn <CR>
+nnoremap <C-H> :tabp <CR>
 map <leader>dcl :%s/^.*console\.log.*\n//gc <CR>
 map <leader>ccl :%s/\(^.*\)\(console\.log.*\n\)/\1\/\/\2/gc <CR>
-map <leader>t :tabn<Space> 
 map <leader>b :buffer<Space>
 nnoremap <Leader>s :%s/<C-r><C-w>//gic<Left><Left><Left><Left>
 nnoremap <Leader>sts :call SetTabStops()<Left>
 nmap <leader>cd :lcd %:p:h<cr>
 nmap <leader>sar :!sudo /usr/sbin/service apache2 restart<cr>
+nnoremap <leader>ln :set relativenumber!<cr>
 
 " DWM plugin
 nmap <leader>wf <Plug>DWMFocus 
@@ -163,8 +169,8 @@ augroup startup
 
     au bufwritepost .vimrc source $MYVIMRC
     " close preview window automatically when we move around
-    au CursorMovedI * if pumvisible() == 0|pclose|endif
-    au InsertLeave * if pumvisible() == 0|pclose|endif
+    "au CursorMovedI * if pumvisible() == 0|pclose|endif
+    "au InsertLeave * if pumvisible() == 0|pclose|endif
 
     " Filetype settings
     au BufRead,BufNewFIle *.scss setlocal filetype=scss

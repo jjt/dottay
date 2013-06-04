@@ -4,3 +4,8 @@ username = jjt
 [hostfingerprints]
 hg.shopethical.com = e0:42:4b:f7:56:30:90:0e:ce:8a:e2:6e:e6:12:74:03:6f:a9:3a:1e
 
+[auth]
+shopethical.prefix = hg.shopethical.com
+shopethical.username = lowboy
+shopethical.password = bib2k8ftw
+shopethical.schemes = https
