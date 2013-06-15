@@ -24,6 +24,7 @@ alias so="source"
 alias pbv="pythonbrew venv use"
 alias py="python"
 alias ack="ack-grep"
+alias lt="ls -lt"
 
 bindkey '\e[A' history-beginning-search-forward
 bindkey '\e[B' history-beginning-search-backward

@@ -17,12 +17,16 @@ Bundle 'spolu/dwm.vim'
 "Bundle 'jiangmiao/auto-pairs'
 Bundle 'nono/vim-handlebars'
 Bundle 'groenewege/vim-less'
+Bundle 'digitaltoad/vim-jade'
 
 "vim-snipmate deps
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
+
+"CtrlP
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components'
 
 
 " Powerline
@@ -54,9 +58,9 @@ set matchtime=2             " (for only .2 seconds).
 set nowrap                  " don't wrap text
 set linebreak               " don't wrap textin the middle of a word
 set autoindent              " always set autoindenting on
-set tabstop=4               " <tab> inserts 4 spaces 
-set shiftwidth=4            " but an indent level is 2 spaces wide.
-set softtabstop=4           " <BS> over an autoindent deletes both spaces.
+set tabstop=2               " <tab> inserts 4 spaces 
+set shiftwidth=2            " but an indent level is 2 spaces wide.
+set softtabstop=2           " <BS> over an autoindent deletes both spaces.
 set expandtab               " Use spaces, not tabs, for autoindent/tab key.
 set shiftround              " rounds indent to a multiple of shiftwidth
 set matchpairs+=<:>         " show matching <> (html mainly) as well
@@ -175,6 +179,7 @@ augroup startup
     " Filetype settings
     au BufRead,BufNewFIle *.scss setlocal filetype=scss
     au BufRead,BufNewFile *.php setlocal filetype=php.html
+    au BufRead,BufNewFile *.coffee setlocal filetype=coffee sw=2 ts=2 sts=2
     au BufRead,BufNewFile *.coffee setlocal filetype=coffee sw=2 ts=2 sts=2
     au BufRead,BufNewFile *.js setlocal sw=2 ts=2 sts=2
     au BufRead,BufNewFile *.hamlpy setlocal filetype=haml sw=4 ts=4 sts=4

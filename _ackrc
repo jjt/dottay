@@ -5,3 +5,5 @@
 --type-set=handlebars=.hbs
 --type-set=less=.less
 --smart-case
+--ignore-dir=node_modules
+--ignore-dir=bower_components

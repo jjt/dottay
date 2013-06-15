@@ -52,7 +52,5 @@
         "system_load_good": { "fg": "system_load_good", "bg": "gray0"  },
         "system_load_bad": { "fg": "system_load_bad", "bg": "gray0"  },
         "system_load_ugly": { "fg": "system_load_ugly", "bg": "gray0"  }
-
     }
-
 }
