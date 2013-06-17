@@ -6,7 +6,7 @@
         "date": { "fg": "black", "bg": "purpmedbri"  },
         "time": { "fg": "black", "bg": "darkestpurple", "attr": ["bold"]  },
         "time:divider": { "fg": "gray5", "bg": "gray2"  },
-        "hostname": { "fg": "black", "bg": "purpbri", "attr": ["bold"]  },
+        "hostname": { "fg": "darkestpurple", "bg": "purpbri", "attr": ["bold"]  },
         "weather": { "fg": "gray8", "bg": "gray0"  },
         "weather_temp_cold": { "fg": "weather_temp_cold", "bg": "gray0"  },
         "weather_temp_hot": { "fg": "weather_temp_hot", "bg": "gray0"  },

@@ -43,3 +43,5 @@ function chpwd() {
     emulate -L zsh
     ls -a
 }
+
+eval "$(bower completion)"
