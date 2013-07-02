@@ -1,0 +1,14 @@
+# ~/.tmuxinator/onefeather.yml
+# you can make as many tabs as you wish...
+
+project_name: onefeather
+project_root: $HOME/sites/one_feather
+rbenv: 2.0.0-p195
+pre: export RBENV_VERSION=2.0.0-p195
+tabs:
+  - editor:
+      layout: 365a,177x84,0,0[177x57,0,0,1,177x26,0,58{89x26,0,58,24,87x26,90,58,2}]
+      panes:
+        - #
+        - bundle exec guard
+        - foreman start -p 7000
