@@ -1,7 +1,7 @@
 # ZSH/Oh-my-zsh
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="jjt"
-plugins=(git ssh-agent history-substring-search)
+plugins=(ssh-agent history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
 # Python 
@@ -16,6 +16,9 @@ eval "$(rbenv init -)"
 # Powerline
 export PATH=$PATH:$HOME/.local/bin
 #. $HOME/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
 
 export SVN_EDITOR=vim
 export EDITOR=vim
@@ -45,3 +48,5 @@ function chpwd() {
 }
 
 eval "$(bower completion)"
+
+[ -s "/home/jason/.scm_breeze/scm_breeze.sh" ] && source "/home/jason/.scm_breeze/scm_breeze.sh"

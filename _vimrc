@@ -104,6 +104,9 @@ set smartcase               " unless uppercase letters are used in the regex.
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
+" Per-directory config
+set exrc
+set secure
 
 let mapleader=","
 
@@ -149,6 +152,8 @@ map ,% :s/^\(\s*\)/\1%/<CR>:noh <CR>
 map ,! :s/^\(\s*\)/\1!/<CR>:noh <CR>
 map ,; :s/^\(\s*\)/\1;/<CR>:noh <CR>
 map ,- :s/^\(\s*\)/\1--/<CR>:noh <CR>
+
+map <leader>d/ :s/^\(\s*\)\/\//\1/<cr>:noh <cr>
 
 map <leader>dhb <ESC>:call DeleteHiddenBuffers() <CR>
 
